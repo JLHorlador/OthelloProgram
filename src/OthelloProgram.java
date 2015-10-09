@@ -79,10 +79,9 @@ public class OthelloProgram {
 	
 	private int rightConversion(int xValue, int yValue)		//Used to convert pieces in the right direction
 	{
-		//boolean cont = false;
-		//int x = xValue;
+		boolean cont = false;
+		int x = xValue;
 		
-		/*
 		//Checks whether another piece of the current player is somewhere on the right
 		while (cont == false && x < 8)
 		{
@@ -92,25 +91,25 @@ public class OthelloProgram {
 				cont = false;
 			x++;
 		}
-		*/
-		//if (cont == true)
-		//{
-		if (xValue < 8)
-		{
+		
+		if (cont == true)
+			{
+			if (xValue < 8)
+			{
 			
-			if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')	//If the current selected piece is not the same as the current player's piece and it's not an asterisk, then convert
-				boardSize[xValue][yValue] = playerTurn;
-			else
-				//boardSize[xValue][yValue] = boardSize[xValue][yValue];
-				return 0;		//Otherwise do nothing
-			return rightConversion(xValue + 1, yValue);		//Recalls the method to go to the next piece to the right
+				if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')	//If the current selected piece is not the same as the current player's piece and it's not an asterisk, then convert
+					boardSize[xValue][yValue] = playerTurn;
+				else
+					//boardSize[xValue][yValue] = boardSize[xValue][yValue];
+					return 0;		//Otherwise do nothing
+				return rightConversion(xValue + 1, yValue);		//Recalls the method to go to the next piece to the right
+			}
 		}
 		return 0;
 	}
 	
 	private int leftConversion(int xValue, int yValue)
 	{
-		/*
 		boolean cont = false;
 		int x = xValue;
 		
@@ -123,24 +122,23 @@ public class OthelloProgram {
 				cont = false;
 			x--;
 		}
-		*/
-		//if (cont == true)
-		//{
-		if (xValue >= 0)
+
+		if (cont == true)
 		{
-			if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')	//If the current selected piece is not the same as the current player's piece and it is not an asterisk then convert
-				boardSize[xValue][yValue] = playerTurn;
-			else		//Otherwise do nothing
-				return 0;
-			return leftConversion(xValue - 1, yValue);		//Recalls the method to go to the next piece to the left
+			if (xValue >= 0)
+			{
+				if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')	//If the current selected piece is not the same as the current player's piece and it is not an asterisk then convert
+					boardSize[xValue][yValue] = playerTurn;
+				else		//Otherwise do nothing
+					return 0;
+				return leftConversion(xValue - 1, yValue);		//Recalls the method to go to the next piece to the left
+			}
 		}
-		//}
 		return 0;
 	}
 	
 	private int downConversion(int xValue, int yValue)
 	{
-		/*
 		boolean cont = false;
 		int y = yValue;
 		
@@ -153,18 +151,18 @@ public class OthelloProgram {
 				cont = false;
 			y++;
 		}
-		*/
-		//if (cont == true)
-		//{
-		if (yValue < 8)
+
+		if (cont == true)
 		{
-			if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')		//If the current selected piece is not the same as the current player's piece and it is not an asterisk then convert 
-				boardSize[xValue][yValue] = playerTurn;
-			else		//Otherwise do nothing
-				return 0;
-			return downConversion(xValue, yValue + 1);		//Recalls the method to go to the next piece below
+			if (yValue < 8)
+			{
+				if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')		//If the current selected piece is not the same as the current player's piece and it is not an asterisk then convert 
+					boardSize[xValue][yValue] = playerTurn;
+				else		//Otherwise do nothing
+					return 0;
+				return downConversion(xValue, yValue + 1);		//Recalls the method to go to the next piece below
+			}
 		}
-		//}
 		return 0;
 	}
 	
@@ -199,7 +197,6 @@ public class OthelloProgram {
 	
 	private int diagonalConversionUpRight(int xValue, int yValue)
 	{
-		/*
 		boolean cont = false;
 		int x = xValue;
 		int y = yValue;
@@ -214,24 +211,23 @@ public class OthelloProgram {
 			x++;
 			y--;
 		}
-		*/
-		//if (cont == true)
-		//{
-		if (xValue < 8 && yValue >= 0)
+		
+		if (cont == true)
 		{
-			if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')		//If the current selected piece is not the same as the current player's piece and it is not an asterisk then convert
-				boardSize[xValue][yValue] = playerTurn;
-			else		//Otherwise do nothing
-				return 0;
-			return diagonalConversionUpRight(xValue + 1, yValue - 1);		//Recalls the method to go to the next piece to the upper right
+			if (xValue < 8 && yValue >= 0)
+			{
+				if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')		//If the current selected piece is not the same as the current player's piece and it is not an asterisk then convert
+					boardSize[xValue][yValue] = playerTurn;
+				else		//Otherwise do nothing
+					return 0;
+				return diagonalConversionUpRight(xValue + 1, yValue - 1);		//Recalls the method to go to the next piece to the upper right
+			}
 		}
-		//}
 		return 0;
 	}
 	
 	private int diagonalConversionDownRight(int xValue, int yValue)
 	{
-		/*
 		boolean cont = false;
 		int x = xValue;
 		int y = yValue;
@@ -246,24 +242,23 @@ public class OthelloProgram {
 			x++;
 			y++;
 		}
-		*/	
-		//if (cont == true)
-		//{
-		if (xValue < 8 && yValue < 8)
+		
+		if (cont == true)
 		{
-			if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')		//If the current selected piece is not the same as the current player's piece and it is not an asterisk, then convert
-				boardSize[xValue][yValue] = playerTurn;
-			else		//Otherwise do nothing
-				return 0;
-			return diagonalConversionDownRight(xValue + 1, yValue + 1);		//Recalls the method to go to the next piece to the lower right
+			if (xValue < 8 && yValue < 8)
+			{
+				if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')		//If the current selected piece is not the same as the current player's piece and it is not an asterisk, then convert
+					boardSize[xValue][yValue] = playerTurn;
+				else		//Otherwise do nothing
+					return 0;
+				return diagonalConversionDownRight(xValue + 1, yValue + 1);		//Recalls the method to go to the next piece to the lower right
+			}
 		}
-		//}
 		return 0;
 	}
 	
 	private int diagonalConversionUpLeft(int xValue, int yValue)
 	{
-		/*
 		boolean cont = false;
 		int x = xValue;
 		int y = yValue;
@@ -278,24 +273,23 @@ public class OthelloProgram {
 			x--;
 			y--;
 		}
-		*/
-		//if (cont == true)
-		//{
-		if (xValue >= 0 && yValue >= 0)
+		
+		if (cont == true)
 		{
-			if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')		//If the current selected piece is not the same as the current player's piece and it is not an asterisk, then convert
-				boardSize[xValue][yValue] = playerTurn;
-			else	//Otherwise do nothing
-				return 0;
-			return diagonalConversionUpLeft(xValue - 1, yValue - 1);		//Recalls the method to go to the next piece to the upper left
+			if (xValue >= 0 && yValue >= 0)
+			{
+				if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')		//If the current selected piece is not the same as the current player's piece and it is not an asterisk, then convert
+					boardSize[xValue][yValue] = playerTurn;
+				else	//Otherwise do nothing
+					return 0;
+				return diagonalConversionUpLeft(xValue - 1, yValue - 1);		//Recalls the method to go to the next piece to the upper left
+			}
 		}
-		//}
 		return 0;
 	}
 	
 	private int diagonalConversionDownLeft(int xValue, int yValue)
 	{
-		/*
 		boolean cont = false;
 		int x = xValue;
 		int y = yValue;
@@ -310,18 +304,18 @@ public class OthelloProgram {
 			x--;
 			y++;
 		}
-		*/
-		//if (cont == true)
-		//{
-		if (xValue >= 0 && yValue < 8)
+		
+		if (cont == true)
 		{
-			if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')		//If the current selected piece is not the same as the current player's piece and it is not an asterisk, then convert
-				boardSize[xValue][yValue] = playerTurn;
-			else	//Otherwise, do nothing
-				return 0;
-			return diagonalConversionDownLeft(xValue - 1, yValue + 1);		//Recalls the method to go to the next piece to the lower left
+			if (xValue >= 0 && yValue < 8)
+			{
+				if (boardSize[xValue][yValue] != playerTurn && boardSize[xValue][yValue] != '*')		//If the current selected piece is not the same as the current player's piece and it is not an asterisk, then convert
+					boardSize[xValue][yValue] = playerTurn;
+				else	//Otherwise, do nothing
+					return 0;
+				return diagonalConversionDownLeft(xValue - 1, yValue + 1);		//Recalls the method to go to the next piece to the lower left
+			}
 		}
-		//}
 		return 0;
 	}
 	
