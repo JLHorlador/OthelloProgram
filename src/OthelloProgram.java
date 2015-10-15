@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class OthelloProgram {
-	private char[][] boardSize;
+	static char[][] boardSize;
 	private int numberOfChips = 0;
 	char playerTurn = 'B';
 	
@@ -28,7 +28,7 @@ public class OthelloProgram {
 		boardSize[3][4] = 'B';
 		boardSize[4][3] = 'B';
 		boardSize[4][4] = 'W';
-	
+
 		/*
 		//Used to check all conversion functions
 		//boardSize[4][3] = '1'; Place value here to trigger all conversion functions
@@ -340,7 +340,7 @@ public class OthelloProgram {
 		int y = my;
 		
 		//Checks if the current player has another piece somewhere to the right
-		if (boardSize[x + 1][y] != playerTurn)		//First checks if the chip to the right is one of the current player's chips
+		if (x + 1 < 8 && boardSize[x + 1][y] != playerTurn)		//First checks if the chip to the right is one of the current player's chips
 		{
 			while (x < 8)
 			{
@@ -352,7 +352,7 @@ public class OthelloProgram {
 		x = startX;		//Resets x to starting position
 		
 		//Checks if the current player has another piece somewhere to the left
-		if (boardSize[x - 1][y] != playerTurn)		//First checks if the chip to the left is one of the current player's chips
+		if (x - 1 >= 0 && boardSize[x - 1][y] != playerTurn)		//First checks if the chip to the left is one of the current player's chips
 		{
 			while (x >= 0)
 			{
@@ -364,7 +364,7 @@ public class OthelloProgram {
 		x = startX;		//Resets x to starting position
 		
 		//Checks if the current player has another piece somewhere below
-		if (boardSize[x][y + 1] != playerTurn)		//First checks if the chip below is one of the current player's chips
+		if (y + 1 < 8 && boardSize[x][y + 1] != playerTurn)		//First checks if the chip below is one of the current player's chips
 		{
 			while (y < 8)
 			{
@@ -376,7 +376,7 @@ public class OthelloProgram {
 		y = startY;		//Resets y to starting position
 		
 		//Checks if the current player has another piece somewhere above
-		if (boardSize[x][y - 1] != playerTurn)		//First checks if the chip above is one of the current player's chips
+		if (y - 1 >= 0 && boardSize[x][y - 1] != playerTurn)		//First checks if the chip above is one of the current player's chips
 		{
 			while (y >= 0)
 			{
@@ -388,7 +388,7 @@ public class OthelloProgram {
 		y = startY;
 		
 		//Checks if the current player has another piece somewhere to the upper right
-		if (boardSize[x + 1][y - 1] != playerTurn)		//First checks if the chip to the upper right is one of the current player's chips
+		if ((x + 1 < 8 && y - 1 >= 0) && boardSize[x + 1][y - 1] != playerTurn)		//First checks if the chip to the upper right is one of the current player's chips
 		{
 			while (x < 8 && y >= 0)
 			{
@@ -402,7 +402,7 @@ public class OthelloProgram {
 		y = startY;
 		
 		//Checks if the current player has another piece somewhere to the lower right
-		if (boardSize[x + 1][y + 1] != playerTurn)		//First checks if the chip to the lower right is one of the current player's chips
+		if ((x + 1 < 8 && y + 1 < 8) && boardSize[x + 1][y + 1] != playerTurn)		//First checks if the chip to the lower right is one of the current player's chips
 		{
 			while (x < 8 && y < 8)
 			{
@@ -416,7 +416,7 @@ public class OthelloProgram {
 		y = startY;
 		
 		//Checks if the current player has another piece somewhere to the upper left
-		if (boardSize[x - 1][y - 1] != playerTurn)		//First checks if the chip to the upper left is one of the current player's chips
+		if ((x - 1 >= 0 && y - 1 >= 0) && boardSize[x - 1][y - 1] != playerTurn)		//First checks if the chip to the upper left is one of the current player's chips
 		{
 			while (x >= 0 && y >= 0)
 			{
@@ -430,7 +430,7 @@ public class OthelloProgram {
 		y = startY;
 		
 		//Checks if the current player has another piece somewhere to the lower left
-		if (boardSize[x - 1][y + 1] != playerTurn)		//First checks if the chip to the lower left is one of the current player's chips
+		if ((x - 1 >= 0 && y + 1 < 8) && boardSize[x - 1][y + 1] != playerTurn)		//First checks if the chip to the lower left is one of the current player's chips
 		{
 			while (x >= 0 && y < 8)
 			{
@@ -448,34 +448,35 @@ public class OthelloProgram {
 	
 	public int playerMove(int mx, int my)
 	{	
-		boolean cont = validMove(mx, my);
+		boolean cont = validMove(mx, my);		//Makes sure whether the chosen position to place the current player's piece is a valid move
 
-		if (cont == true)
+		if (cont == true)		//If it is a valid move, make player moves
 		{
-			if (boardSize[mx][my] == '*')
+			if (boardSize[mx][my] == '*')		//Checks if the space is an empty space
 			{
-				boardSize[mx][my] = playerTurn;
-				conversion(mx, my);
-				numberOfChips++;
+				boardSize[mx][my] = playerTurn;		//Assigns the current space as the current player's piece
+				conversion(mx, my);		//Does necessary conversions
+				numberOfChips++;	//Increases the number of chips on the board
 			}
-			else
+			else		//If it is not an empty space, have the player choose another position
 			{
 				System.out.println("Space is already taken!\n");
 				return 0;
 			}
 		
+			//Change the current player's turn
 			if (playerTurn == 'B')
 				playerTurn = 'W';
 			else
 				playerTurn = 'B';
 		
-		
+			//Checks if all the spaces in the board are filled up 
 			if (numberOfChips != 64)
 				return 0;
-			else
+			else		//If it is filled up, end the game
 				return 1;
 		}
-		else
+		else		//If it is not a valid move, make the current player choose another location
 		{
 			System.out.println("Invalid move! Try again.");
 			return 0;
@@ -488,9 +489,9 @@ public class OthelloProgram {
 		{
 			for (int x = 0; x < 8; x++)
 			{
-				System.out.print(boardSize[x][y] + " ");
+				System.out.print(boardSize[x][y] + " ");	//Displays the items in the current row of the array
 			}
-			System.out.println();
+			System.out.println();		//Once it reaches the end of a row, move down and print the next row
 		}
 	}
 	
@@ -500,13 +501,15 @@ public class OthelloProgram {
 		Scanner input = new Scanner(System.in);
 		int y = 0;
 		int x = 0;
+		int totalWhitePieces = 0;
+		int totalBlackPieces = 0;
 		int result;
 
 		do
 		{
 			game.displayBoard();
 			
-			if (game.playerTurn == 'B')
+			if (game.playerTurn == 'B')		//Displays who's turn it is
 				System.out.println("Black's turn");
 			else
 				System.out.println("White's turn");
@@ -519,5 +522,25 @@ public class OthelloProgram {
 			
 			result = game.playerMove(x, y);
 		} while (result == 0);
+		
+		if (result == 1)
+		{
+			for (int yVal = 0; yVal < 8; yVal++)
+			{
+				for (int xVal = 0; xVal < 8; xVal++)
+				{
+					if (boardSize[xVal][yVal] == 'B')
+						totalBlackPieces++;
+					else if (boardSize[xVal][yVal] == 'W')
+						totalWhitePieces++;
+				}
+			}
+			if (totalBlackPieces > totalWhitePieces)
+				System.out.println("Black wins!");
+			else if (totalWhitePieces > totalBlackPieces)
+				System.out.println("White wins!");
+			else
+				System.out.println("It is a tie!");
+		}
 	}
 }
