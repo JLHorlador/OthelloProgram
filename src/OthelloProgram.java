@@ -502,14 +502,31 @@ public class OthelloProgram {
 	
 	public void displayBoard()
 	{
+		System.out.print("   ");
+		for (int i = 0; i < 8; i++)
+		{
+			System.out.print(i + " ");
+		}
+		System.out.println();
 		for (int y = 0; y < 8; y++)
 		{
+			System.out.print(y + "| ");
 			for (int x = 0; x < 8; x++)
 			{
 				System.out.print(boardSize[x][y] + " ");	//Displays the items in the current row of the array
+				if(x == 7)
+				{
+					System.out.println("|" + y);	//left column
+				}
 			}
-			System.out.println();		//Once it reaches the end of a row, move down and print the next row
+//			System.out.println();		//Once it reaches the end of a row, move down and print the next row
 		}
+		System.out.print("   ");
+		for (int i = 0; i < 8; i++)
+		{
+			System.out.print(i + " ");
+		}
+		System.out.println();
 	}
 
 	public static void main(String[] args)
