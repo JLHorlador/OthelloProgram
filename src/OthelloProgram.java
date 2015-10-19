@@ -11,7 +11,7 @@ public class OthelloProgram {
 		boardSize = new char[8][8];
 		setupBoard();
 	}
-	
+	//Hi John
 	private void setupBoard()
 	{
 		//First, it fills up all spaces of the board in asterisks
